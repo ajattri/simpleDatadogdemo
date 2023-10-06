@@ -1,6 +1,4 @@
-const findUp = require('find-up')
-const packageJsonPath = findUp.sync('package.json')
-const packageJson = require(packageJsonPath)
+const packageJson = require('./package.json');
 module.exports = {
     basePath: '/simpleDatadogdemo',
     assetPrefix: '/simpleDatadogdemo/',
