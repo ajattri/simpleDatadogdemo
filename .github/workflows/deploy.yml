@@ -46,5 +46,4 @@ jobs:
           --service=simpledemo \
           --release-version=$RELEASE_VERSION \
           --minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo/
-      env:
-        DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+      
