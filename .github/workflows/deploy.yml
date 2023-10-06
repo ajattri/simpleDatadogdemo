@@ -33,3 +33,18 @@ jobs:
         branch: gh-pages
         folder: out
         token: ${{ secrets.DEPLOY_TOKEN }}
+    
+    - name: Get version from package.json
+      id: package-version
+      run: |
+        echo "::set-output name=version::$(node -p "require('./package.json').version")"
+
+    - name: Upload Source Maps to Datadog
+      run: |
+        RELEASE_VERSION=${{ steps.package-version.outputs.version }}
+        npx datadog-ci sourcemaps upload ./.next \
+          --service=simpledemo \
+          --release-version=$RELEASE_VERSION \
+          --minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo/
+      env:
+        DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}

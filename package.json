@@ -5,14 +5,17 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "export": "next export"
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@datadog/browser-logs": "^4.13.0",
+    "@datadog/browser-rum": "^4.13.0",
+    "@datadog/datadog-ci": "^2.21.1",
     "next": "^12.1.6-canary.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
