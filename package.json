@@ -16,6 +16,7 @@
     "@datadog/browser-logs": "^4.13.0",
     "@datadog/browser-rum": "^4.13.0",
     "@datadog/datadog-ci": "^2.21.1",
+    "find-up": "^6.3.0",
     "next": "^12.1.6-canary.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
