@@ -10,34 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18.17.1'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.17.1"
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build Next.js app
-      run: npm run build
+      - name: Build Next.js app
+        run: npm run build
 
-    - name: Export Next.js app (for static hosting)
-      run: npm run export
+      - name: Export Next.js app (for static hosting)
+        run: npm run export
 
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.5
-      with:
-        branch: gh-pages
-        folder: out
-        token: ${{ secrets.DEPLOY_TOKEN }}
-    
-    - name: Upload Source Maps to Datadog
-      run: npm run uploadSourcemaps
-      env:
+      - name: Add .nojekyll file into the out folder
+        run: npm run addNojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: out
+          token: ${{ secrets.DEPLOY_TOKEN }}
+
+      - name: Upload Source Maps to Datadog
+        run: npm run uploadSourcemaps
+        env:
           DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
 
-    - name: Delete Source Maps Locally
-      run: npm run deleteSourcemaps
+      - name: Delete Source Maps Locally
+        run: npm run deleteSourcemaps
