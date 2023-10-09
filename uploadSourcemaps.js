@@ -9,7 +9,7 @@ if (!datadogApiKey) {
 }
 
 try {
-  execSync(`${path.join(__dirname, 'node_modules', '.bin', 'datadog-ci')} sourcemaps upload ./.next \
+  execSync(`npx datadog-ci sourcemaps upload ./.next \
     --service=simpledemo \
     --release-version=${packageJson.version} \
     --minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo/ \
