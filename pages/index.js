@@ -24,6 +24,11 @@ function HomePage() {
   return (
     <div>
       <p>Welcome to Simple Next.js App</p>
+      <button onClick={() => {
+        console.log({
+          AccessingNonAvailableValue
+        })
+      }}>test Error Log</button>
     </div>
   );
 }

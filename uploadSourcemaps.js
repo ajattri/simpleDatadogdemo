@@ -8,6 +8,16 @@ if (!datadogApiKey) {
   process.exit(1);
 }
 
+
+const sourceMapFolderPath = `${__dirname}/out`
+
+const command = `datadog-ci sourcemaps upload ${sourceMapFolderPath} \
+--service=simpledemo \
+--release-version=v${packageJson.version} \
+--minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo`
+
+console.log({command})
+
 try {
   // execSync(`npx datadog-ci sourcemaps upload ./out \
   //   --service=simpledemo \
@@ -21,11 +31,10 @@ try {
   //     }
   //   });
 
-  execSync(`npx datadog-ci sourcemaps upload ./out \
-    --service=simpledemo \
-    --release-version=${packageJson.version} \
-    --minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo/`);
+  execSync(command);
 } catch (error) {
-  console.error('Error uploading sourcemaps to Datadog:', error);
-  process.exit(1);
+  console.error('Error occurred: ==', error);
+  console.error('Error:', error.message);
+  console.error('Stack Trace:', error.stack);
+  //process.exit(1);
 }
