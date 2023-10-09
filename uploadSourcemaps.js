@@ -9,17 +9,22 @@ if (!datadogApiKey) {
 }
 
 try {
-  execSync(`npx datadog-ci sourcemaps upload ./.next \
+  // execSync(`npx datadog-ci sourcemaps upload ./out \
+  //   --service=simpledemo \
+  //   --release-version=${packageJson.version} \
+  //   --minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo/ \
+  //   --project-root=${process.cwd()}`, {
+  //     stdio: 'inherit',  // this will show the command output in console
+  //     env: {
+  //       ...process.env,
+  //       DATADOG_API_KEY: datadogApiKey
+  //     }
+  //   });
+
+  execSync(`npx datadog-ci sourcemaps upload ./out \
     --service=simpledemo \
     --release-version=${packageJson.version} \
-    --minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo/ \
-    --project-root=${process.cwd()}`, {
-      stdio: 'inherit',  // this will show the command output in console
-      env: {
-        ...process.env,
-        DATADOG_API_KEY: datadogApiKey
-      }
-    });
+    --minified-path-prefix=https://ajattri.github.io/simpleDatadogdemo/`);
 } catch (error) {
   console.error('Error uploading sourcemaps to Datadog:', error);
   process.exit(1);
