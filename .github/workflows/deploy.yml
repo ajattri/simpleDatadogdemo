@@ -27,8 +27,8 @@ jobs:
       - name: Export Next.js app (for static hosting)
         run: npm run export
 
-      # - name: Upload Source Maps to Datadog
-      #   run: npm run uploadSourcemaps
+      - name: Upload Source Maps to Datadog
+        run: npm run uploadSourcemaps
 
       - name: Delete sourcemaps
         run: npm run deleteSourcemaps
