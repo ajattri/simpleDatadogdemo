@@ -1,6 +1,9 @@
 import { datadogRum } from '@datadog/browser-rum';
 import getConfig from 'next/config';
 
+import {Button} from '../components/Button'
+import {api} from '../api'
+
 const {publicRuntimeConfig} = getConfig()
 const {dataDogBrowserConfig} = publicRuntimeConfig
 
@@ -24,17 +27,22 @@ function HomePage() {
   return (
     <div>
       <p>Welcome to Simple Next.js App</p>
-      <button onClick={() => {
-        console.log({
-          AccessingNonAvailableValue1
-        })
-      }}>test Error Log1</button>
+      <Button onClick={async () => {
 
-      <button onClick={() => {
+        const result = await api()
+
         console.log({
-          AccessingNonAvailableValue2
+          result
         })
-      }}>test Error Log2</button>
+      }}>test Error Log1</Button>
+
+      <Button onClick={ async() => {
+        const result = await api()
+
+        console.log({
+          result
+        })
+      }}>test Error Log2</Button>
 
     </div>
   );
