@@ -27,6 +27,12 @@ jobs:
       - name: Export Next.js app (for static hosting)
         run: npm run export
 
+      # - name: Upload Source Maps to Datadog
+      #   run: npm run uploadSourcemaps
+
+      - name: Delete sourcemaps
+        run: npm run deleteSourcemaps
+
       - name: Add .nojekyll file into the out folder
         run: npm run addNojekyll
 
@@ -36,11 +42,6 @@ jobs:
           branch: gh-pages
           folder: out
           token: ${{ secrets.DEPLOY_TOKEN }}
-
-      - name: Upload Source Maps to Datadog
-        run: npm run uploadSourcemaps
-        env:
-          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
 
       - name: Delete Source Maps Locally
         run: npm run deleteSourcemaps

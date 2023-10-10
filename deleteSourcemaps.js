@@ -13,4 +13,6 @@ function deleteSourcemaps(directory) {
   }
 }
 
-deleteSourcemaps('./.next');
+const sourceMapFolderPath = `${__dirname}/out`
+
+deleteSourcemaps(sourceMapFolderPath);
